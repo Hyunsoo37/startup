@@ -1,11 +1,508 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index.html</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMK - Start at Mason Korea</title>
+  <meta name="description" content="SAMK는 창업과 개발에 열정을 가진 Mason Korea 학생들이 모인 동아리입니다. 함께 프로젝트를 만들고 세상에 도전하세요." />
+  <meta property="og:title" content="SAMK - Start at Mason Korea" />
+  <meta property="og:description" content="Mason Korea 학생들의 창업 개발 동아리" />
+  <meta property="og:image" content="https://samk.masonkorea.edu/assets/og-image.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://samk.masonkorea.edu" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: #111;
+      color: #eee;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    nav {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    .language-switcher {
+      display: flex;
+      gap: 10px;
+    }
+    .language-switcher button {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+    .language-switcher button.active {
+      color: #66aaff;
+      font-weight: bold;
+    }
+    .hero {
+      height: 100vh;
+      background: url('https://d101vc9winf8ln.cloudfront.net/article_images/14853/original/_%EC%82%AC%EC%A7%84%EC%A7%80%EB%A3%8C__%ED%95%9C%EA%B5%AD%EC%A1%B0%EC%A7%80%EB%A9%94%EC%9D%B4%EC%8A%A8%EB%8C%80%ED%95%99%EA%B5%90_%EC%A0%84%EA%B2%BD.jpg?1598515855') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      background-color: rgba(0,0,0,0.6);
+      background-blend-mode: darken;
+      padding-top: 80px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .hero h1 {
+      font-size: 64px;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeSlideUp 1s ease-out;
+    }
+    .section.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .section h2 {
+      font-size: 32px;
+      color: #66aaff;
+      margin-bottom: 20px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      width: 100%;
+      margin-top: 40px;
+    }
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-content h3 {
+      margin: 0 0 10px;
+      color: #fff;
+    }
+    .card-content p {
+      color: #ccc;
+      font-size: 14px;
+      flex-grow: 1;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #66aaff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+    .cta-button:hover {
+      background-color: #5588cc;
+    }
+    footer {
+      background-color: #b92c22;
+      color: white;
+      padding: 40px 5vw;
+      font-weight: 300;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    footer .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer hr {
+      border: 0;
+      height: 1px;
+      background: white;
+      margin: 30px 0;
+    }
+    footer .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    footer .bottom div {
+      flex: 1;
+      min-width: 300px;
+    }
+    footer .bottom .right {
+      text-align: right;
+    }
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 10px;
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+      .hero p {
+        font-size: 16px;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .section h2 {
+        font-size: 24px;
+      }
+      .card img {
+        height: 150px;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+  <nav>
+    <div class="logo">SAMK</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#recruit">Recruit</a></li>
+    </ul>
+    <div class="language-switcher">
+      <button class="lang-btn active" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="en">English</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1 data-lang-key="hero_title">SAMK</h1>
+    <p data-lang-key="hero_subtitle">Start at Mason Korea - 창업과 개발의 시작</p>
+  </div>
+
+  <div class="section" id="about">
+    <h2 data-lang-key="about_title">About</h2>
+    <p data-lang-key="about_content">SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.</p>
+  </div>
+
+  <div class="section" id="activities">
+    <h2 data-lang-key="activities_title">활동 내용</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBQerKWNCt28fpozxjxiMBM2682Cl93JNbg&s" alt="코딩 활동 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="activities_coding_title">Coding</h3>
+          <p data-lang-key="activities_coding_content">아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://img.freepik.com/free-vector/startup-life-concept-illustration_114360-1226.jpg" alt="협업 활동 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="activities_communicate_title">Communicate</h3>
+          <p data-lang-key="activities_communicate_content">같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHaSktY8UQ3jc8eR10uEcnY229OHvRJge97w&s" alt="해커톤 활동 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="activities_hackathon_title">Hackathon</h3>
+          <p data-lang-key="activities_hackathon_content">해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="team">
+    <h2 data-lang-key="team_title">Team</h2>
+    <p data-lang-key="team_content">SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://samk.masonkorea.edu/assets/team_dif.jpg" alt="DIF 팀 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="team_dif_title">DIF</h3>
+          <p data-lang-key="team_dif_content">지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://samk.masonkorea.edu/assets/team_jun.jpg" alt="Jun 팀 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="team_jun_title">Jun</h3>
+          <p data-lang-key="team_jun_content">창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://samk.masonkorea.edu/assets/team_sydney.jpg" alt="Sydney 팀 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="team_sydney_title">Sydney</h3>
+          <p data-lang-key="team_sydney_content">글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="events">
+    <h2 data-lang-key="events_title">진행 중인 행사</h2>
+    <p data-lang-key="events_content">현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/03/04/v3246bf2ecf3eec7b93bc9ad98d402b157.png" alt="이미지 분류 해커톤 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="events_hackathon1_title">🎯 이미지 분류 해커톤</h3>
+          <p data-lang-key="events_hackathon1_content">데이터 속 아이콘의 종류를 맞혀라!</p>
+          <a href="https://onoffmix.com/event/318669" target="_blank" class="cta-button">더 알아보기 →</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/01/v3165517c876673a2cdb102b7787aa24e4.png" alt="기업 성공 확률 예측 해커톤 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="events_hackathon2_title">🧠 기업 성공 확률 예측 해커톤</h3>
+          <p data-lang-key="events_hackathon2_content">미래의 성공기업을 발굴하라!</p>
+          <a href="https://onoffmix.com/event/320334" target="_blank" class="cta-button">더 알아보기 →</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/07/v3f8ea1286c8e2010c89b8f5b7886b9e3b.jpg" alt="Snowflake & Streamlit 해커톤 이미지">
+        <div class="card-content">
+          <h3 data-lang-key="events_hackathon3_title">Snowflake & Streamlit 해커톤</h3>
+          <p data-lang-key="events_hackathon3_content">데이터로 아이디어를 현실로 만들고 싶다면?</p>
+          <a href="https://onoffmix.com/event/320748" target="_blank" class="cta-button">더 알아보기 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="recruit">
+    <h2 data-lang-key="recruit_title">모집 안내</h2>
+    <p data-lang-key="recruit_content">연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요.</p>
+    <div>
+      <a href="https://instagram.com/samk_official" target="_blank" class="cta-button">Instagram에서 확인하기</a>
+      <a href="https://samk.masonkorea.edu/apply" target="_blank" class="cta-button" style="margin-left: 20px;">지금 지원하기</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="top">
+        <p>Copyright © SAMK All Rights Reserved.</p>
+        <div>
+          <a href="https://instagram.com" target="_blank" style="color: white; margin-left: 10px; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+          <a href="https://open.kakao.com" target="_blank" style="color: white; margin-left: 10px; font-size: 20px;"><i class="fas fa-comment"></i></a>
+          <a href="https://github.com" target="_blank" style="color: white; margin-left: 10px; font-size: 20px;"><i class="fab fa-github"></i></a>
+          <a href="https://youtube.com" target="_blank" style="color: white; margin-left: 10px; font-size: 20px;"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <hr>
+      <div class="bottom">
+        <div>
+          <p style="font-weight: bold; font-size: 18px; margin: 0 0 10px;">Made with by SAMK</p>
+          <p>2025 Ver. Created by <strong>SAMK</strong></p>
+          <p>경기도 인천시 연수구 송도문화로 119, 조지메이슨대학교 글로벌캠퍼스</p>
+          <p>spark279@gmu.edu</p>
+        </div>
+        <div class="right">
+          <p style="font-weight: bold;">회장</p>
+          <p>박새봄 010-9454-0836</p>
+          <p style="font-weight: bold;">부회장</p>
+          <p>하태준 010-4775-7419</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      ko: {
+        hero_title: "SAMK",
+        hero_subtitle: "Start at Mason Korea - 창업과 개발의 시작",
+        about_title: "About",
+        about_content: "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.",
+        activities_title: "Activities",
+        activities_coding_title: "Coding",
+        activities_coding_content: "아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다.",
+        activities_communicate_title: "Communicate",
+        activities_communicate_content: "같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다.",
+        activities_hackathon_title: "Hackathon",
+        activities_hackathon_content: "해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다.",
+        team_title: "Team",
+        team_content: "SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다.",
+        team_dif_title: "DIF",
+        team_dif_content: "지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다.",
+        team_jun_title: "Jun",
+        team_jun_content: "창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다.",
+        team_sydney_title: "Sydney",
+        team_sydney_content: "글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다.",
+        events_title: "Events",
+        events_content: "현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다.",
+        events_hackathon1_title: "🎯 이미지 분류 해커톤",
+        events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
+        events_hackathon2_title: "🧠 기업 성공 확률 예측 해커톤",
+        events_hackathon2_content: "미래의 성공기업을 발굴하라!",
+        events_hackathon3_title: "Snowflake & Streamlit 해커톤",
+        events_hackathon3_content: "데이터로 아이디어를 현실로 만들고 싶다면?",
+        recruit_title: "Recruit",
+        recruit_content: "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요."
+      },
+      en: {
+        hero_title: "SAMK",
+        hero_subtitle: "Start at Mason Korea - The Beginning of Entrepreneurship and Development",
+        about_title: "About",
+        about_content: "SAMK is a student club at George Mason University Korea where passionate students come together to bring ideas to life and grow through entrepreneurship and development.",
+        activities_title: "Activities",
+        activities_coding_title: "Coding",
+        activities_coding_content: "We conduct various studies and coding practices to turn ideas into real products.",
+        activities_communicate_title: "Communicate",
+        activities_communicate_content: "We foster a culture of growth through collaboration with members who share the same goals.",
+        activities_hackathon_title: "Hackathon",
+        activities_hackathon_content: "We gain real-world experience and connect with the world through hackathons, competitions, and external activities.",
+        team_title: "Team",
+        team_content: "SAMK values collaboration and idea development through diverse teams. Each team works on unique projects with distinct themes and goals.",
+        team_dif_title: "DIF",
+        team_dif_content: "A technology-focused team developing digital solutions to address community issues.",
+        team_jun_title: "Jun",
+        team_jun_content: "A design-focused team creating differentiated services through creative design and user experience.",
+        team_sydney_title: "Sydney",
+        team_sydney_content: "A global strategy team planning and executing startup projects targeting the international market.",
+        events_title: "Ongoing Events",
+        events_content: "Information about current hackathons and major projects.",
+        events_hackathon1_title: "🎯 Image Classification Hackathon",
+        events_hackathon1_content: "Identify the types of icons in the data!",
+        events_hackathon2_title: "🧠 Startup Success Prediction Hackathon",
+        events_hackathon2_content: "Discover the future successful companies!",
+        events_hackathon3_title: "Snowflake & Streamlit Hackathon",
+        events_hackathon3_content: "Want to turn ideas into reality with data?",
+        recruit_title: "Recruitment",
+        recruit_content: "We recruit new members twice a year (Spring/Fall semesters). Check our Instagram and announcements for detailed schedules."
+      }
+    };
+
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const langElements = document.querySelectorAll('[data-lang-key]');
+
+    function setLanguage(lang) {
+      langElements.forEach(el => {
+        el.textContent = translations[lang][el.dataset.langKey];
+      });
+      langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.dataset.lang);
+      });
+    });
+
+    const sections = document.querySelectorAll('.section, .hero');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sections.forEach(section => {
+            section.classList.add('hidden');
+            section.classList.remove('visible');
+          });
+          entry.target.classList.remove('hidden');
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '-10% 0px'
+    });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    setLanguage('ko');
+  </script>
 </body>
 </html>
