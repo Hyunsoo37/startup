@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>SAMK - Start at Mason Korea</title>
   <meta name="description" content="SAMK는 창업과 개발에 열정을 가진 Mason Korea 학생들이 모인 동아리입니다. 함께 프로젝트를 만들고 세상에 도전하세요." />
   <meta property="og:title" content="SAMK - Start at Mason Korea" />
@@ -79,19 +82,37 @@
       flex-direction: column;
       text-align: center;
       color: white;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.5);
       background-blend-mode: darken;
       padding-top: 80px;
-      opacity: 1;
-      transition: opacity 0.5s ease;
+      position: relative;
+      z-index: 1;
     }
     .hero h1 {
       font-size: 64px;
       margin: 0;
+      min-height: 80px;
+      color: white;
+      opacity: 1;
+      z-index: 10;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero h1.typing::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+      margin-left: 5px;
+    }
+    .hero h1:not(.typing)::after {
+      content: '';
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
     .hero p {
       font-size: 20px;
-      margin-top: 10px;
+      margin-top: 20px;
+      z-index: 10;
     }
     .section {
       max-width: 1200px;
@@ -99,7 +120,7 @@
       padding: 60px 20px;
       opacity: 0;
       transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -108,7 +129,7 @@
     .section.visible {
       opacity: 1;
       transform: translateY(0);
-      animation: fadeSlideUp 1s ease-out;
+      animation: fadeSlideUp 0.5s ease-out;
     }
     .section.hidden {
       opacity: 0;
@@ -135,6 +156,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
     }
     .card:hover {
       transform: translateY(-5px);
@@ -175,6 +197,37 @@
     .cta-button:hover {
       background-color: #5588cc;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      text-align: center;
+      color: #eee;
+    }
+    .modal-content h3 {
+      color: #66aaff;
+    }
+    .modal-content .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #eee;
+    }
     footer {
       background-color: #b92c22;
       color: white;
@@ -214,14 +267,8 @@
       text-align: right;
     }
     @keyframes fadeSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 768px) {
       nav ul {
@@ -263,7 +310,7 @@
   </nav>
 
   <div class="hero">
-    <h1 data-lang-key="hero_title">SAMK</h1>
+    <h1 id="typing-text" data-lang-key="hero_title"></h1>
     <p data-lang-key="hero_subtitle">Start at Mason Korea - 창업과 개발의 시작</p>
   </div>
 
@@ -276,21 +323,21 @@
     <h2 data-lang-key="activities_title">활동 내용</h2>
     <div class="cards">
       <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBQerKWNCt28fpozxjxiMBM2682Cl93JNbg&s" alt="코딩 활동 이미지">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBQerKWNCt28fpozxjxiMBM2682Cl93JNbg&s" alt="코딩 활동 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="activities_coding_title">Coding</h3>
           <p data-lang-key="activities_coding_content">아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://img.freepik.com/free-vector/startup-life-concept-illustration_114360-1226.jpg" alt="협업 활동 이미지">
+        <img src="https://img.freepik.com/free-vector/startup-life-concept-illustration_114360-1226.jpg" alt="협업 활동 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="activities_communicate_title">Communicate</h3>
           <p data-lang-key="activities_communicate_content">같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다.</p>
         </div>
       </div>
       <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHaSktY8UQ3jc8eR10uEcnY229OHvRJge97w&s" alt="해커톤 활동 이미지">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHaSktY8UQ3jc8eR10uEcnY229OHvRJge97w&s" alt="해커톤 활동 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="activities_hackathon_title">Hackathon</h3>
           <p data-lang-key="activities_hackathon_content">해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다.</p>
@@ -301,27 +348,27 @@
 
   <div class="section" id="team">
     <h2 data-lang-key="team_title">Team</h2>
-    <p data-lang-key="team_content">SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다.</p>
+    <p data-lang-key="team_content">SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다。</p>
     <div class="cards">
-      <div class="card">
-        <img src="https://samk.masonkorea.edu/assets/team_dif.jpg" alt="DIF 팀 이미지">
+      <div class="card" onclick="showModal('dif')">
+        <img src="https://images.unsplash.com/photo-1516321310764-2f51c5a64997?q=80&w=2070&auto=format&fit=crop" alt="DIF 팀 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="team_dif_title">DIF</h3>
-          <p data-lang-key="team_dif_content">지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다.</p>
+          <p data-lang-key="team_dif_content">지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다。</p>
         </div>
       </div>
-      <div class="card">
-        <img src="https://samk.masonkorea.edu/assets/team_jun.jpg" alt="Jun 팀 이미지">
+      <div class="card" onclick="showModal('jun')">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2b6a55?q=80&w=2070&auto=format&fit=crop" alt="Jun 팀 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="team_jun_title">Jun</h3>
-          <p data-lang-key="team_jun_content">창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다.</p>
+          <p data-lang-key="team_jun_content">창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다。</p>
         </div>
       </div>
-      <div class="card">
-        <img src="https://samk.masonkorea.edu/assets/team_sydney.jpg" alt="Sydney 팀 이미지">
+      <div class="card" onclick="showModal('sydney')">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd690bf4ae?q=80&w=2070&auto=format&fit=crop" alt="Sydney 팀 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="team_sydney_title">Sydney</h3>
-          <p data-lang-key="team_sydney_content">글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다.</p>
+          <p data-lang-key="team_sydney_content">글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다。</p>
         </div>
       </div>
     </div>
@@ -329,10 +376,10 @@
 
   <div class="section" id="events">
     <h2 data-lang-key="events_title">진행 중인 행사</h2>
-    <p data-lang-key="events_content">현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다.</p>
+    <p data-lang-key="events_content">현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。</p>
     <div class="cards">
       <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/03/04/v3246bf2ecf3eec7b93bc9ad98d402b157.png" alt="이미지 분류 해커톤 이미지">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/03/04/v3246bf2ecf3eec7b93bc9ad98d402b157.png" alt="이미지 분류 해커톤 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="events_hackathon1_title">🎯 이미지 분류 해커톤</h3>
           <p data-lang-key="events_hackathon1_content">데이터 속 아이콘의 종류를 맞혀라!</p>
@@ -340,7 +387,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/01/v3165517c876673a2cdb102b7787aa24e4.png" alt="기업 성공 확률 예측 해커톤 이미지">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/01/v3165517c876673a2cdb102b7787aa24e4.png" alt="기업 성공 확률 예측 해커톤 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="events_hackathon2_title">🧠 기업 성공 확률 예측 해커톤</h3>
           <p data-lang-key="events_hackathon2_content">미래의 성공기업을 발굴하라!</p>
@@ -348,7 +395,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/07/v3f8ea1286c8e2010c89b8f5b7886b9e3b.jpg" alt="Snowflake & Streamlit 해커톤 이미지">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/07/v3f8ea1286c8e2010c89b8f5b7886b9e3b.jpg" alt="Snowflake & Streamlit 해커톤 이미지" loading="lazy">
         <div class="card-content">
           <h3 data-lang-key="events_hackathon3_title">Snowflake & Streamlit 해커톤</h3>
           <p data-lang-key="events_hackathon3_content">데이터로 아이디어를 현실로 만들고 싶다면?</p>
@@ -360,10 +407,18 @@
 
   <div class="section" id="recruit">
     <h2 data-lang-key="recruit_title">모집 안내</h2>
-    <p data-lang-key="recruit_content">연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요.</p>
+    <p data-lang-key="recruit_content">연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。</p>
     <div>
       <a href="https://instagram.com/samk_official" target="_blank" class="cta-button">Instagram에서 확인하기</a>
       <a href="https://samk.masonkorea.edu/apply" target="_blank" class="cta-button" style="margin-left: 20px;">지금 지원하기</a>
+    </div>
+  </div>
+
+  <div class="modal" id="team-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-members"></p>
     </div>
   </div>
 
@@ -399,38 +454,38 @@
   <script>
     const translations = {
       ko: {
-        hero_title: "SAMK",
+        hero_title: "Welcome to SAMK",
         hero_subtitle: "Start at Mason Korea - 창업과 개발의 시작",
         about_title: "About",
-        about_content: "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.",
-        activities_title: "Activities",
+        about_content: "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
+        activities_title: "활동 내용",
         activities_coding_title: "Coding",
-        activities_coding_content: "아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다.",
+        activities_coding_content: "아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다。",
         activities_communicate_title: "Communicate",
-        activities_communicate_content: "같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다.",
+        activities_communicate_content: "같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다。",
         activities_hackathon_title: "Hackathon",
-        activities_hackathon_content: "해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다.",
+        activities_hackathon_content: "해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다。",
         team_title: "Team",
-        team_content: "SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다.",
+        team_content: "SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다。",
         team_dif_title: "DIF",
-        team_dif_content: "지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다.",
+        team_dif_content: "지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심 팀입니다。",
         team_jun_title: "Jun",
-        team_jun_content: "창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다.",
+        team_jun_content: "창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다。",
         team_sydney_title: "Sydney",
-        team_sydney_content: "글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다.",
-        events_title: "Events",
-        events_content: "현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다.",
+        team_sydney_content: "글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다。",
+        events_title: "진행 중인 행사",
+        events_content: "현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。",
         events_hackathon1_title: "🎯 이미지 분류 해커톤",
         events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
         events_hackathon2_title: "🧠 기업 성공 확률 예측 해커톤",
         events_hackathon2_content: "미래의 성공기업을 발굴하라!",
         events_hackathon3_title: "Snowflake & Streamlit 해커톤",
         events_hackathon3_content: "데이터로 아이디어를 현실로 만들고 싶다면?",
-        recruit_title: "Recruit",
-        recruit_content: "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요."
+        recruit_title: "모집 안내",
+        recruit_content: "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。"
       },
       en: {
-        hero_title: "SAMK",
+        hero_title: "Welcome to SAMK",
         hero_subtitle: "Start at Mason Korea - The Beginning of Entrepreneurship and Development",
         about_title: "About",
         about_content: "SAMK is a student club at George Mason University Korea where passionate students come together to bring ideas to life and grow through entrepreneurship and development.",
@@ -464,10 +519,33 @@
 
     const langButtons = document.querySelectorAll('.lang-btn');
     const langElements = document.querySelectorAll('[data-lang-key]');
+    let currentLang = 'ko';
+    let typingTimeout = null;
+
+    const teamData = {
+      dif: { title: translations.ko.team_dif_title, members: "김철수 (리더), 박영희 (개발자), 이지민 (디자이너)" },
+      jun: { title: translations.ko.team_jun_title, members: "최민수 (리더), 정수진 (UX 전문가), 김다영 (개발자)" },
+      sydney: { title: translations.ko.team_sydney_title, members: "이현우 (리더), 박지훈 (마케터), 송민지 (기획자)" }
+    };
 
     function setLanguage(lang) {
+      console.log(`setLanguage called with lang: ${lang}`);
+      if (typingTimeout) {
+        console.log('Clearing previous typing animation');
+        clearTimeout(typingTimeout);
+        typingTimeout = null;
+      }
+      currentLang = lang;
+      teamData.dif.title = translations[lang].team_dif_title;
+      teamData.jun.title = translations[lang].team_jun_title;
+      teamData.sydney.title = translations[lang].team_sydney_title;
       langElements.forEach(el => {
-        el.textContent = translations[lang][el.dataset.langKey];
+        const text = translations[lang][el.dataset.langKey];
+        if (el.id === 'typing-text') {
+          startTypingAnimation(text);
+        } else {
+          el.textContent = text;
+        }
       });
       langButtons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -475,8 +553,54 @@
       document.documentElement.lang = lang;
     }
 
+    function startTypingAnimation(text) {
+      const typingElement = document.getElementById('typing-text');
+      if (!typingElement) {
+        console.error('Typing element not found');
+        return;
+      }
+      console.log(`Starting typing animation with text: ${text}`);
+      if (typingTimeout) {
+        console.log('Animation cleared before starting new');
+        clearTimeout(typingTimeout);
+      }
+      typingElement.textContent = '';
+      typingElement.classList.add('typing');
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          const char = text.charAt(i);
+          typingElement.textContent += char;
+          console.log(`Character added: ${char}`);
+          i++;
+          typingTimeout = setTimeout(type, 80);
+        } else {
+          typingElement.classList.remove('typing');
+          console.log('Typing animation completed');
+          typingTimeout = null;
+        }
+      }
+      type();
+    }
+
+    function showModal(team) {
+      console.log(`Showing modal for team: ${team}`);
+      const modal = document.getElementById('team-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalMembers = document.getElementById('modal-members');
+      modalTitle.textContent = teamData[team].title;
+      modalMembers.textContent = `Members: ${teamData[team].members}`;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      console.log('Closing modal');
+      document.getElementById('team-modal').style.display = 'none';
+    }
+
     langButtons.forEach(btn => {
       btn.addEventListener('click', () => {
+        console.log(`Language button clicked: ${btn.dataset.lang}`);
         setLanguage(btn.dataset.lang);
       });
     });
@@ -485,6 +609,7 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          console.log(`Section visible: ${entry.target.id || 'hero'}`);
           sections.forEach(section => {
             section.classList.add('hidden');
             section.classList.remove('visible');
@@ -495,14 +620,25 @@
       });
     }, {
       threshold: 0.5,
-      rootMargin: '-10% 0px'
+      rootMargin: '-5% 0px'
     });
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
 
-    setLanguage('ko');
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM fully loaded');
+      try {
+        const typingElement = document.getElementById('typing-text');
+        if (typingElement) {
+          console.log('Initializing typing animation');
+          setLanguage('ko');
+        } else {
+          console.error('Typing text element not found');
+        }
+      } catch (error) {
+        console.error('Initialization error:', error);
+      }
+    });
   </script>
 </body>
 </html>
