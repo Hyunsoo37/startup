@@ -228,6 +228,48 @@
       cursor: pointer;
       color: #eee;
     }
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline-item {
+      margin: 20px 0;
+      padding-left: 40px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #66aaff;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #66aaff;
+      border-radius: 50%;
+    }
+    .timeline-item span {
+      font-size: 14px;
+      color: #ccc;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .timeline-item h3 {
+      color: #fff;
+      margin: 5px 0;
+    }
+    .timeline-item p {
+      color: #ccc;
+      font-size: 14px;
+    }
     footer {
       background-color: #b92c22;
       color: white;
@@ -290,6 +332,15 @@
       .card img {
         height: 150px;
       }
+      .timeline-item {
+        padding-left: 30px;
+      }
+      .timeline-item::before {
+        left: 10px;
+      }
+      .timeline-item::after {
+        left: 6px;
+      }
     }
   </style>
 </head>
@@ -298,9 +349,8 @@
     <div class="logo">SAMK</div>
     <ul>
       <li><a href="#about">About</a></li>
-      <li><a href="#activities">Activities</a></li>
+      <li><a href="#events">Hackathon Info</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#events">Events</a></li>
       <li><a href="#recruit">Recruit</a></li>
     </ul>
     <div class="language-switcher">
@@ -319,28 +369,32 @@
     <p data-lang-key="about_content">SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.</p>
   </div>
 
-  <div class="section" id="activities">
-    <h2 data-lang-key="activities_title">활동 내용</h2>
+  <div class="section" id="events">
+    <h2 data-lang-key="events_title">해커톤 정보</h2>
+    <p data-lang-key="events_content">SAMK가 소개하는 외부 해커톤과 대회 정보입니다。</p>
     <div class="cards">
       <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBQerKWNCt28fpozxjxiMBM2682Cl93JNbg&s" alt="코딩 활동 이미지" loading="lazy">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/03/04/v3246bf2ecf3eec7b93bc9ad98d402b157.png" alt="이미지 분류 해커톤 이미지" loading="lazy">
         <div class="card-content">
-          <h3 data-lang-key="activities_coding_title">Coding</h3>
-          <p data-lang-key="activities_coding_content">아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다.</p>
+          <h3 data-lang-key="events_hackathon1_title">🎯 이미지 분류 해커톤</h3>
+          <p data-lang-key="events_hackathon1_content">데이터 속 아이콘의 종류를 맞혀라!</p>
+          <a href="https://onoffmix.com/event/318669" target="_blank" class="cta-button">더 알아보기 →</a>
         </div>
       </div>
       <div class="card">
-        <img src="https://img.freepik.com/free-vector/startup-life-concept-illustration_114360-1226.jpg" alt="협업 활동 이미지" loading="lazy">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/01/v3165517c876673a2cdb102b7787aa24e4.png" alt="기업 성공 확률 예측 해커톤 이미지" loading="lazy">
         <div class="card-content">
-          <h3 data-lang-key="activities_communicate_title">Communicate</h3>
-          <p data-lang-key="activities_communicate_content">같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다.</p>
+          <h3 data-lang-key="events_hackathon2_title">🧠 기업 성공 확률 예측 해커톤</h3>
+          <p data-lang-key="events_hackathon2_content">미래의 성공기업을 발굴하라!</p>
+          <a href="https://onoffmix.com/event/320334" target="_blank" class="cta-button">더 알아보기 →</a>
         </div>
       </div>
       <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHaSktY8UQ3jc8eR10uEcnY229OHvRJge97w&s" alt="해커톤 활동 이미지" loading="lazy">
+        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/07/v3f8ea1286c8e2010c89b8f5b7886b9e3b.jpg" alt="Snowflake & Streamlit 해커톤 이미지" loading="lazy">
         <div class="card-content">
-          <h3 data-lang-key="activities_hackathon_title">Hackathon</h3>
-          <p data-lang-key="activities_hackathon_content">해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다.</p>
+          <h3 data-lang-key="events_hackathon3_title">Snowflake & Streamlit 해커톤</h3>
+          <p data-lang-key="events_hackathon3_content">데이터로 아이디어를 현실로 만들고 싶다면?</p>
+          <a href="https://onoffmix.com/event/320748" target="_blank" class="cta-button">더 알아보기 →</a>
         </div>
       </div>
     </div>
@@ -374,33 +428,24 @@
     </div>
   </div>
 
-  <div class="section" id="events">
-    <h2 data-lang-key="events_title">진행 중인 행사</h2>
-    <p data-lang-key="events_content">현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。</p>
-    <div class="cards">
-      <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/03/04/v3246bf2ecf3eec7b93bc9ad98d402b157.png" alt="이미지 분류 해커톤 이미지" loading="lazy">
-        <div class="card-content">
-          <h3 data-lang-key="events_hackathon1_title">🎯 이미지 분류 해커톤</h3>
-          <p data-lang-key="events_hackathon1_content">데이터 속 아이콘의 종류를 맞혀라!</p>
-          <a href="https://onoffmix.com/event/318669" target="_blank" class="cta-button">더 알아보기 →</a>
-        </div>
+  <div class="section" id="timeline">
+    <h2 data-lang-key="timeline_title">이벤트 타임라인</h2>
+    <p data-lang-key="timeline_content">SAMK의 주요 이벤트를 한눈에 확인하세요。</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span data-lang-key="timeline_date1">2024.10</span>
+        <h3 data-lang-key="timeline_event1_title">첫 이미지 분류 해커톤</h3>
+        <p data-lang-key="timeline_event1_content">SAMK의 첫 해커톤, 데이터로 세상을 바꾸다!</p>
       </div>
-      <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/01/v3165517c876673a2cdb102b7787aa24e4.png" alt="기업 성공 확률 예측 해커톤 이미지" loading="lazy">
-        <div class="card-content">
-          <h3 data-lang-key="events_hackathon2_title">🧠 기업 성공 확률 예측 해커톤</h3>
-          <p data-lang-key="events_hackathon2_content">미래의 성공기업을 발굴하라!</p>
-          <a href="https://onoffmix.com/event/320334" target="_blank" class="cta-button">더 알아보기 →</a>
-        </div>
+      <div class="timeline-item">
+        <span data-lang-key="timeline_date2">2025.03</span>
+        <h3 data-lang-key="timeline_event2_title">창업 세미나</h3>
+        <p data-lang-key="timeline_event2_content">스타트업 전문가와 함께한 아이디어 워크숍</p>
       </div>
-      <div class="card">
-        <img src="https://static.onoffmix.com/afv2/thumbnail/2025/04/07/v3f8ea1286c8e2010c89b8f5b7886b9e3b.jpg" alt="Snowflake & Streamlit 해커톤 이미지" loading="lazy">
-        <div class="card-content">
-          <h3 data-lang-key="events_hackathon3_title">Snowflake & Streamlit 해커톤</h3>
-          <p data-lang-key="events_hackathon3_content">데이터로 아이디어를 현실로 만들고 싶다면?</p>
-          <a href="https://onoffmix.com/event/320748" target="_blank" class="cta-button">더 알아보기 →</a>
-        </div>
+      <div class="timeline-item">
+        <span data-lang-key="timeline_date3">2025.05</span>
+        <h3 data-lang-key="timeline_event3_title">AI 워크숍 (예정)</h3>
+        <p data-lang-key="timeline_event3_content">AI 기술로 미래를 설계하는 실습 워크숍</p>
       </div>
     </div>
   </div>
@@ -458,13 +503,6 @@
         hero_subtitle: "Start at Mason Korea - 창업과 개발의 시작",
         about_title: "About",
         about_content: "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
-        activities_title: "활동 내용",
-        activities_coding_title: "Coding",
-        activities_coding_content: "아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다。",
-        activities_communicate_title: "Communicate",
-        activities_communicate_content: "같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다。",
-        activities_hackathon_title: "Hackathon",
-        activities_hackathon_content: "해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다。",
         team_title: "Team",
         team_content: "SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다。",
         team_dif_title: "DIF",
@@ -473,14 +511,25 @@
         team_jun_content: "창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는 디자인 중심 팀입니다。",
         team_sydney_title: "Sydney",
         team_sydney_content: "글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다。",
-        events_title: "진행 중인 행사",
-        events_content: "현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。",
+        events_title: "해커톤 정보",
+        events_content: "SAMK가 소개하는 외부 해커톤과 대회 정보입니다。",
         events_hackathon1_title: "🎯 이미지 분류 해커톤",
         events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
         events_hackathon2_title: "🧠 기업 성공 확률 예측 해커톤",
         events_hackathon2_content: "미래의 성공기업을 발굴하라!",
         events_hackathon3_title: "Snowflake & Streamlit 해커톤",
         events_hackathon3_content: "데이터로 아이디어를 현실로 만들고 싶다면?",
+        timeline_title: "이벤트 타임라인",
+        timeline_content: "SAMK의 주요 이벤트를 한눈에 확인하세요。",
+        timeline_date1: "2024.10",
+        timeline_event1_title: "첫 이미지 분류 해커톤",
+        timeline_event1_content: "SAMK의 첫 해커톤, 데이터로 세상을 바꾸다!",
+        timeline_date2: "2025.03",
+        timeline_event2_title: "창업 세미나",
+        timeline_event2_content: "스타트업 전문가와 함께한 아이디어 워크숍",
+        timeline_date3: "2025.05",
+        timeline_event3_title: "AI 워크숍 (예정)",
+        timeline_event3_content: "AI 기술로 미래를 설계하는 실습 워크숍",
         recruit_title: "모집 안내",
         recruit_content: "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。"
       },
@@ -489,13 +538,6 @@
         hero_subtitle: "Start at Mason Korea - The Beginning of Entrepreneurship and Development",
         about_title: "About",
         about_content: "SAMK is a student club at George Mason University Korea where passionate students come together to bring ideas to life and grow through entrepreneurship and development.",
-        activities_title: "Activities",
-        activities_coding_title: "Coding",
-        activities_coding_content: "We conduct various studies and coding practices to turn ideas into real products.",
-        activities_communicate_title: "Communicate",
-        activities_communicate_content: "We foster a culture of growth through collaboration with members who share the same goals.",
-        activities_hackathon_title: "Hackathon",
-        activities_hackathon_content: "We gain real-world experience and connect with the world through hackathons, competitions, and external activities.",
         team_title: "Team",
         team_content: "SAMK values collaboration and idea development through diverse teams. Each team works on unique projects with distinct themes and goals.",
         team_dif_title: "DIF",
@@ -504,14 +546,25 @@
         team_jun_content: "A design-focused team creating differentiated services through creative design and user experience.",
         team_sydney_title: "Sydney",
         team_sydney_content: "A global strategy team planning and executing startup projects targeting the international market.",
-        events_title: "Ongoing Events",
-        events_content: "Information about current hackathons and major projects.",
+        events_title: "Hackathon Info",
+        events_content: "Information on external hackathons and competitions introduced by SAMK.",
         events_hackathon1_title: "🎯 Image Classification Hackathon",
         events_hackathon1_content: "Identify the types of icons in the data!",
         events_hackathon2_title: "🧠 Startup Success Prediction Hackathon",
         events_hackathon2_content: "Discover the future successful companies!",
         events_hackathon3_title: "Snowflake & Streamlit Hackathon",
         events_hackathon3_content: "Want to turn ideas into reality with data?",
+        timeline_title: "Event Timeline",
+        timeline_content: "Explore SAMK's key events at a glance.",
+        timeline_date1: "2024.10",
+        timeline_event1_title: "First Image Classification Hackathon",
+        timeline_event1_content: "SAMK's first hackathon, changing the world with data!",
+        timeline_date2: "2025.03",
+        timeline_event2_title: "Startup Seminar",
+        timeline_event2_content: "Idea workshop with startup experts",
+        timeline_date3: "2025.05",
+        timeline_event3_title: "AI Workshop (Upcoming)",
+        timeline_event3_content: "Hands-on workshop designing the future with AI",
         recruit_title: "Recruitment",
         recruit_content: "We recruit new members twice a year (Spring/Fall semesters). Check our Instagram and announcements for detailed schedules."
       }
