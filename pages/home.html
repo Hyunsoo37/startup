@@ -408,7 +408,7 @@
       <h2 data-lang-key="about_title">소개</h2>
       <p data-lang-key="about_content">
         SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께
-        성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.
+        성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。
       </p>
     </div>
 
@@ -435,6 +435,7 @@
               href="https://onoffmix.com/event/318669"
               target="_blank"
               class="cta-button"
+              data-lang-key="learn_more"
               >더 알아보기 →</a
             >
           </div>
@@ -456,6 +457,7 @@
               href="https://onoffmix.com/event/320334"
               target="_blank"
               class="cta-button"
+              data-lang-key="learn_more"
               >더 알아보기 →</a
             >
           </div>
@@ -477,6 +479,7 @@
               href="https://onoffmix.com/event/320748"
               target="_blank"
               class="cta-button"
+              data-lang-key="learn_more"
               >더 알아보기 →</a
             >
           </div>
@@ -578,6 +581,7 @@
           href="https://instagram.com/samk_official"
           target="_blank"
           class="cta-button"
+          data-lang-key="check_instagram"
           >Instagram에서 확인하기</a
         >
         <a
@@ -585,6 +589,7 @@
           target="_blank"
           class="cta-button"
           style="margin-left: 20px"
+          data-lang-key="apply_now"
           >지금 지원하기</a
         >
       </div>
@@ -680,6 +685,7 @@
           events_hackathon3_title: "Snowflake & Streamlit 해커톤",
           events_hackathon3_content:
             "데이터로 아이디어를 현실로 만들고 싶다면?",
+          learn_more: "더 알아보기 →",
           timeline_title: "타임라인",
           timeline_content: "SAMK의 주요 활동을 한눈에 확인하세요。",
           timeline_date1: "2024.10",
@@ -694,6 +700,8 @@
           recruit_title: "모집 안내",
           recruit_content:
             "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。",
+          check_instagram: "Instagram에서 확인하기",
+          apply_now: "지금 지원하기",
         },
         en: {
           hero_title: "Welcome to SAMK",
@@ -725,6 +733,7 @@
           events_hackathon3_title: "Snowflake & Streamlit Hackathon",
           events_hackathon3_content:
             "Want to turn ideas into reality with data?",
+          learn_more: "Learn More →",
           timeline_title: "Timeline",
           timeline_content: "Explore SAMK's key activities at a glance.",
           timeline_date1: "2024.10",
@@ -741,6 +750,8 @@
           recruit_title: "Recruitment",
           recruit_content:
             "We recruit new members twice a year (Spring/Fall semesters). Check our Instagram and announcements for detailed schedules.",
+          check_instagram: "Check on Instagram",
+          apply_now: "Apply Now",
         },
       };
 
@@ -851,7 +862,7 @@
       function setupIntersectionObserver() {
         observer = new IntersectionObserver(
           (entries) => {
-            if (isNavigating) return; // 네비게이션 중에는 IntersectionObserver 동작 방지
+            if (isNavigating) return;
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 console.log(`Section visible: ${entry.target.id || "hero"}`);
@@ -873,19 +884,17 @@
         sections.forEach((section) => observer.observe(section));
       }
 
-      // 네비게이션 링크 클릭 이벤트 추가
       const navLinks = document.querySelectorAll("nav ul li a");
       navLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
-          e.preventDefault(); // 기본 스크롤 동작 방지
-          const targetId = link.getAttribute("href").substring(1); // #about -> about
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
           const targetSection = document.getElementById(targetId);
 
           if (targetSection) {
             console.log(`Navigating to section: ${targetId}`);
             isNavigating = true;
 
-            // 모든 섹션 숨김 처리 후 대상 섹션만 표시
             sections.forEach((section) => {
               section.classList.add("hidden");
               section.classList.remove("visible");
@@ -893,7 +902,6 @@
             targetSection.classList.remove("hidden");
             targetSection.classList.add("visible");
 
-            // 부드러운 스크롤 (네비게이션 바 높이 고려)
             const navHeight = document.querySelector("nav").offsetHeight;
             const targetPosition =
               targetSection.getBoundingClientRect().top +
@@ -904,13 +912,12 @@
               behavior: "smooth",
             });
 
-            // 스크롤 완료 후 isNavigating 플래그 해제
             setTimeout(() => {
               isNavigating = false;
               console.log(
                 "Navigation completed, re-enabling IntersectionObserver"
               );
-            }, 1000); // 스크롤 애니메이션 시간 고려
+            }, 1000);
           } else {
             console.error(`Target section not found: ${targetId}`);
           }
