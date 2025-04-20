@@ -64,10 +64,14 @@
         font-size: 24px;
         font-weight: bold;
       }
+      nav .logo a {
+        color: white;
+        text-decoration: none;
+      }
       nav ul {
         list-style: none;
         display: flex;
-        gap: 20px;
+        gap: 15px;
         margin: 0;
         padding: 0;
         flex-wrap: wrap;
@@ -255,6 +259,48 @@
         cursor: pointer;
         color: #eee;
       }
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+      .timeline-item {
+        margin: 20px 0;
+        padding-left: 40px;
+        position: relative;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: #66aaff;
+      }
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        background: #66aaff;
+        border-radius: 50%;
+      }
+      .timeline-item span {
+        font-size: 14px;
+        color: #ccc;
+        display: block;
+        margin-bottom: 5px;
+      }
+      .timeline-item h3 {
+        color: #fff;
+        margin: 5px 0;
+      }
+      .timeline-item p {
+        color: #ccc;
+        font-size: 14px;
+      }
       footer {
         background-color: #b92c22;
         color: white;
@@ -305,8 +351,10 @@
       }
       @media (max-width: 768px) {
         nav ul {
-          gap: 10px;
-          flex-direction: column;
+          gap: 8px;
+        }
+        nav ul li a {
+          font-size: 14px;
         }
         .hero h1 {
           font-size: 36px;
@@ -323,18 +371,27 @@
         .card img {
           height: 150px;
         }
+        .timeline-item {
+          padding-left: 30px;
+        }
+        .timeline-item::before {
+          left: 10px;
+        }
+        .timeline-item::after {
+          left: 6px;
+        }
       }
     </style>
   </head>
   <body>
     <nav>
-      <div class="logo">SAMK</div>
+      <div class="logo"><a href="home.html">SAMK</a></div>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#activities">Activities</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#recruit">Recruit</a></li>
+        <li><a href="#about" data-lang-key="about_title">소개</a></li>
+        <li><a href="#events" data-lang-key="events_title">해커톤 정보</a></li>
+        <li><a href="#team" data-lang-key="team_title">팀</a></li>
+        <li><a href="#timeline" data-lang-key="timeline_title">타임라인</a></li>
+        <li><a href="#recruit" data-lang-key="recruit_title">모집 안내</a></li>
       </ul>
       <div class="language-switcher">
         <button class="lang-btn active" data-lang="ko">한국어</button>
@@ -342,126 +399,23 @@
       </div>
     </nav>
 
-    <div class="hero">
+    <div class="hero" id="hero">
       <h1 id="typing-text" data-lang-key="hero_title"></h1>
-      <p data-lang-key="hero_subtitle">
-        Start at Mason Korea - 창업과 개발의 시작
-      </p>
+      <p data-lang-key="hero_subtitle"></p>
     </div>
 
     <div class="section" id="about">
-      <h2 data-lang-key="about_title">About</h2>
+      <h2 data-lang-key="about_title">소개</h2>
       <p data-lang-key="about_content">
         SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께
         성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다.
       </p>
     </div>
 
-    <div class="section" id="activities">
-      <h2 data-lang-key="activities_title">활동 내용</h2>
-      <div class="cards">
-        <div class="card">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBQerKWNCt28fpozxjxiMBM2682Cl93JNbg&s"
-            alt="코딩 활동 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="activities_coding_title">Coding</h3>
-            <p data-lang-key="activities_coding_content">
-              아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩
-              실습을 진행합니다.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="https://img.freepik.com/free-vector/startup-life-concept-illustration_114360-1226.jpg"
-            alt="협업 활동 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="activities_communicate_title">Communicate</h3>
-            <p data-lang-key="activities_communicate_content">
-              같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고
-              있습니다.
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHaSktY8UQ3jc8eR10uEcnY229OHvRJge97w&s"
-            alt="해커톤 활동 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="activities_hackathon_title">Hackathon</h3>
-            <p data-lang-key="activities_hackathon_content">
-              해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과
-              연결됩니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="team">
-      <h2 data-lang-key="team_title">Team</h2>
-      <p data-lang-key="team_content">
-        SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을
-        중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를
-        수행합니다。
-      </p>
-      <div class="cards">
-        <div class="card" onclick="showModal('dif')">
-          <img
-            src="https://images.unsplash.com/photo-1516321310764-2f51c5a64997?q=80&w=2070&auto=format&fit=crop"
-            alt="DIF 팀 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="team_dif_title">DIF</h3>
-            <p data-lang-key="team_dif_content">
-              지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심
-              팀입니다。
-            </p>
-          </div>
-        </div>
-        <div class="card" onclick="showModal('jun')">
-          <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2b6a55?q=80&w=2070&auto=format&fit=crop"
-            alt="Jun 팀 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="team_jun_title">Jun</h3>
-            <p data-lang-key="team_jun_content">
-              창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는
-              디자인 중심 팀입니다。
-            </p>
-          </div>
-        </div>
-        <div class="card" onclick="showModal('sydney')">
-          <img
-            src="https://images.unsplash.com/photo-1531482615713-2afd690bf4ae?q=80&w=2070&auto=format&fit=crop"
-            alt="Sydney 팀 이미지"
-            loading="lazy"
-          />
-          <div class="card-content">
-            <h3 data-lang-key="team_sydney_title">Sydney</h3>
-            <p data-lang-key="team_sydney_content">
-              글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌
-              전략 팀입니다。
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="section" id="events">
-      <h2 data-lang-key="events_title">진행 중인 행사</h2>
+      <h2 data-lang-key="events_title">해커톤 정보</h2>
       <p data-lang-key="events_content">
-        현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。
+        SAMK가 소개하는 외부 해커톤과 대회 정보입니다。
       </p>
       <div class="cards">
         <div class="card">
@@ -526,6 +480,89 @@
               >더 알아보기 →</a
             >
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="team">
+      <h2 data-lang-key="team_title">팀</h2>
+      <p data-lang-key="team_content">
+        SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을
+        중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를
+        수행합니다。
+      </p>
+      <div class="cards">
+        <div class="card" onclick="showModal('dif')">
+          <img
+            src="https://images.unsplash.com/photo-1516321310764-2f51c5a64997?q=80&w=2070&auto=format&fit=crop"
+            alt="DIF 팀 이미지"
+            loading="lazy"
+          />
+          <div class="card-content">
+            <h3 data-lang-key="team_dif_title">DIF</h3>
+            <p data-lang-key="team_dif_content">
+              지역사회 문제 해결을 위한 디지털 솔루션을 개발하는 기술 중심
+              팀입니다。
+            </p>
+          </div>
+        </div>
+        <div class="card" onclick="showModal('jun')">
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2b6a55?q=80&w=2070&auto=format&fit=crop"
+            alt="Jun 팀 이미지"
+            loading="lazy"
+          />
+          <div class="card-content">
+            <h3 data-lang-key="team_jun_title">Jun</h3>
+            <p data-lang-key="team_jun_content">
+              창의적인 디자인과 사용자 경험을 통해 차별화된 서비스를 구상하는
+              디자인 중심 팀입니다。
+            </p>
+          </div>
+        </div>
+        <div class="card" onclick="showModal('sydney')">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd690bf4ae?q=80&w=2070&auto=format&fit=crop"
+            alt="Sydney 팀 이미지"
+            loading="lazy"
+          />
+          <div class="card-content">
+            <h3 data-lang-key="team_sydney_title">Sydney</h3>
+            <p data-lang-key="team_sydney_content">
+              글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌
+              전략 팀입니다。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="timeline">
+      <h2 data-lang-key="timeline_title">타임라인</h2>
+      <p data-lang-key="timeline_content">
+        SAMK의 주요 활동을 한눈에 확인하세요。
+      </p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span data-lang-key="timeline_date1">2024.10</span>
+          <h3 data-lang-key="timeline_event1_title">첫 이미지 분류 해커톤</h3>
+          <p data-lang-key="timeline_event1_content">
+            SAMK의 첫 해커톤, 데이터로 세상을 바꾸다!
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span data-lang-key="timeline_date2">2025.03</span>
+          <h3 data-lang-key="timeline_event2_title">창업 세미나</h3>
+          <p data-lang-key="timeline_event2_content">
+            스타트업 전문가와 함께한 아이디어 워크숍
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span data-lang-key="timeline_date3">2025.05</span>
+          <h3 data-lang-key="timeline_event3_title">AI 워크숍 (예정)</h3>
+          <p data-lang-key="timeline_event3_content">
+            AI 기술로 미래를 설계하는 실습 워크숍
+          </p>
         </div>
       </div>
     </div>
@@ -619,20 +656,10 @@
         ko: {
           hero_title: "Welcome to SAMK",
           hero_subtitle: "Start at Mason Korea - 창업과 개발의 시작",
-          about_title: "About",
+          about_title: "소개",
           about_content:
             "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
-          activities_title: "활동 내용",
-          activities_coding_title: "Coding",
-          activities_coding_content:
-            "아이디어를 실제 프로덕트로 구현하기 위해 다양한 스터디와 코딩 실습을 진행합니다。",
-          activities_communicate_title: "Communicate",
-          activities_communicate_content:
-            "같은 목표를 가진 멤버들과 협업하며 성장하는 문화를 만들고 있습니다。",
-          activities_hackathon_title: "Hackathon",
-          activities_hackathon_content:
-            "해커톤, 공모전 등 외부 활동을 통해 실전 경험을 쌓고 세상과 연결됩니다。",
-          team_title: "Team",
+          team_title: "팀",
           team_content:
             "SAMK는 다양한 팀 단위로 아이디어를 발전시키고 협업하는 과정을 중시합니다. 각 팀은 고유한 주제와 목표를 갖고 독창적인 프로젝트를 수행합니다。",
           team_dif_title: "DIF",
@@ -644,9 +671,8 @@
           team_sydney_title: "Sydney",
           team_sydney_content:
             "글로벌 시장을 겨냥한 스타트업 프로젝트를 기획하고 실행하는 글로벌 전략 팀입니다。",
-          events_title: "진행 중인 행사",
-          events_content:
-            "현재 열리고 있는 해커톤 및 주요 프로젝트 정보입니다。",
+          events_title: "해커톤 정보",
+          events_content: "SAMK가 소개하는 외부 해커톤과 대회 정보입니다。",
           events_hackathon1_title: "🎯 이미지 분류 해커톤",
           events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
           events_hackathon2_title: "🧠 기업 성공 확률 예측 해커톤",
@@ -654,6 +680,17 @@
           events_hackathon3_title: "Snowflake & Streamlit 해커톤",
           events_hackathon3_content:
             "데이터로 아이디어를 현실로 만들고 싶다면?",
+          timeline_title: "타임라인",
+          timeline_content: "SAMK의 주요 활동을 한눈에 확인하세요。",
+          timeline_date1: "2024.10",
+          timeline_event1_title: "첫 이미지 분류 해커톤",
+          timeline_event1_content: "SAMK의 첫 해커톤, 데이터로 세상을 바꾸다!",
+          timeline_date2: "2025.03",
+          timeline_event2_title: "창업 세미나",
+          timeline_event2_content: "스타트업 전문가와 함께한 아이디어 워크숍",
+          timeline_date3: "2025.05",
+          timeline_event3_title: "AI 워크숍 (예정)",
+          timeline_event3_content: "AI 기술로 미래를 설계하는 실습 워크숍",
           recruit_title: "모집 안내",
           recruit_content:
             "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。",
@@ -665,16 +702,6 @@
           about_title: "About",
           about_content:
             "SAMK is a student club at George Mason University Korea where passionate students come together to bring ideas to life and grow through entrepreneurship and development.",
-          activities_title: "Activities",
-          activities_coding_title: "Coding",
-          activities_coding_content:
-            "We conduct various studies and coding practices to turn ideas into real products.",
-          activities_communicate_title: "Communicate",
-          activities_communicate_content:
-            "We foster a culture of growth through collaboration with members who share the same goals.",
-          activities_hackathon_title: "Hackathon",
-          activities_hackathon_content:
-            "We gain real-world experience and connect with the world through hackathons, competitions, and external activities.",
           team_title: "Team",
           team_content:
             "SAMK values collaboration and idea development through diverse teams. Each team works on unique projects with distinct themes and goals.",
@@ -687,9 +714,9 @@
           team_sydney_title: "Sydney",
           team_sydney_content:
             "A global strategy team planning and executing startup projects targeting the international market.",
-          events_title: "Ongoing Events",
+          events_title: "Hackathon Info",
           events_content:
-            "Information about current hackathons and major projects.",
+            "Information on external hackathons and competitions introduced by SAMK.",
           events_hackathon1_title: "🎯 Image Classification Hackathon",
           events_hackathon1_content: "Identify the types of icons in the data!",
           events_hackathon2_title: "🧠 Startup Success Prediction Hackathon",
@@ -698,6 +725,19 @@
           events_hackathon3_title: "Snowflake & Streamlit Hackathon",
           events_hackathon3_content:
             "Want to turn ideas into reality with data?",
+          timeline_title: "Timeline",
+          timeline_content: "Explore SAMK's key activities at a glance.",
+          timeline_date1: "2024.10",
+          timeline_event1_title: "First Image Classification Hackathon",
+          timeline_event1_content:
+            "SAMK's first hackathon, changing the world with data!",
+          timeline_date2: "2025.03",
+          timeline_event2_title: "Startup Seminar",
+          timeline_event2_content: "Idea workshop with startup experts",
+          timeline_date3: "2025.05",
+          timeline_event3_title: "AI Workshop (Upcoming)",
+          timeline_event3_content:
+            "Hands-on workshop designing the future with AI",
           recruit_title: "Recruitment",
           recruit_content:
             "We recruit new members twice a year (Spring/Fall semesters). Check our Instagram and announcements for detailed schedules.",
@@ -708,6 +748,7 @@
       const langElements = document.querySelectorAll("[data-lang-key]");
       let currentLang = "ko";
       let typingTimeout = null;
+      let isNavigating = false;
 
       const teamData = {
         dif: {
@@ -736,7 +777,10 @@
         teamData.jun.title = translations[lang].team_jun_title;
         teamData.sydney.title = translations[lang].team_sydney_title;
         langElements.forEach((el) => {
-          const text = translations[lang][el.dataset.langKey];
+          let text = translations[lang][el.dataset.langKey];
+          if (el.dataset.langKey === "hero_subtitle" && lang === "ko") {
+            text = "Start at Mason Korea - 창업과 개발의 시작";
+          }
           if (el.id === "typing-text") {
             startTypingAnimation(text);
           } else {
@@ -802,27 +846,76 @@
       });
 
       const sections = document.querySelectorAll(".section, .hero");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              console.log(`Section visible: ${entry.target.id || "hero"}`);
-              sections.forEach((section) => {
-                section.classList.add("hidden");
-                section.classList.remove("visible");
-              });
-              entry.target.classList.remove("hidden");
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        {
-          threshold: 0.5,
-          rootMargin: "-5% 0px",
-        }
-      );
+      let observer;
 
-      sections.forEach((section) => observer.observe(section));
+      function setupIntersectionObserver() {
+        observer = new IntersectionObserver(
+          (entries) => {
+            if (isNavigating) return; // 네비게이션 중에는 IntersectionObserver 동작 방지
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                console.log(`Section visible: ${entry.target.id || "hero"}`);
+                sections.forEach((section) => {
+                  section.classList.add("hidden");
+                  section.classList.remove("visible");
+                });
+                entry.target.classList.remove("hidden");
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.5,
+            rootMargin: "-5% 0px",
+          }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      // 네비게이션 링크 클릭 이벤트 추가
+      const navLinks = document.querySelectorAll("nav ul li a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault(); // 기본 스크롤 동작 방지
+          const targetId = link.getAttribute("href").substring(1); // #about -> about
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            console.log(`Navigating to section: ${targetId}`);
+            isNavigating = true;
+
+            // 모든 섹션 숨김 처리 후 대상 섹션만 표시
+            sections.forEach((section) => {
+              section.classList.add("hidden");
+              section.classList.remove("visible");
+            });
+            targetSection.classList.remove("hidden");
+            targetSection.classList.add("visible");
+
+            // 부드러운 스크롤 (네비게이션 바 높이 고려)
+            const navHeight = document.querySelector("nav").offsetHeight;
+            const targetPosition =
+              targetSection.getBoundingClientRect().top +
+              window.pageYOffset -
+              navHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
+            });
+
+            // 스크롤 완료 후 isNavigating 플래그 해제
+            setTimeout(() => {
+              isNavigating = false;
+              console.log(
+                "Navigation completed, re-enabling IntersectionObserver"
+              );
+            }, 1000); // 스크롤 애니메이션 시간 고려
+          } else {
+            console.error(`Target section not found: ${targetId}`);
+          }
+        });
+      });
 
       document.addEventListener("DOMContentLoaded", () => {
         console.log("DOM fully loaded");
@@ -834,6 +927,7 @@
           } else {
             console.error("Typing text element not found");
           }
+          setupIntersectionObserver();
         } catch (error) {
           console.error("Initialization error:", error);
         }
