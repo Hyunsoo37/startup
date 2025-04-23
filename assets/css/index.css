@@ -3,12 +3,14 @@ html {
   margin: 0;
   padding: 0;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif; /* 폰트 폴백 추가 */
+    Roboto, sans-serif;
   background-color: #111;
   color: #eee;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 */
 }
+
 nav {
   background-color: #000;
   color: white;
@@ -23,15 +25,24 @@ nav {
   z-index: 1000;
   box-sizing: border-box;
 }
+
 nav .logo {
   font-size: 24px;
   font-weight: bold;
 }
+
 nav .logo a {
   color: white;
   text-decoration: none;
 }
-nav ul {
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links {
   list-style: none;
   display: flex;
   gap: 15px;
@@ -39,31 +50,83 @@ nav ul {
   padding: 0;
   flex-wrap: wrap;
 }
-nav ul li a {
+
+.nav-links li a {
   color: white;
   text-decoration: none;
   font-size: 16px;
   white-space: nowrap;
 }
-.language-switcher {
+
+.nav-links.active {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  padding: 20px;
+  box-sizing: border-box;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
-.language-switcher button {
+
+.nav-links {
+  transform: translateY(-20px);
+  opacity: 0;
+  display: none;
+}
+
+.language-switcher {
+  position: relative;
+}
+
+.language-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0; /* 언어 드롭다운을 왼쪽에 맞춤 */
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.language-dropdown.active {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.language-dropdown button {
   background: none;
   border: none;
   color: #ccc;
   font-size: 14px;
+  padding: 10px 20px;
   cursor: pointer;
-  padding: 5px 10px;
+  width: 100%;
+  text-align: left;
 }
-.language-switcher button.active {
-  color: #66aaff;
-  font-weight: bold;
+
+.language-dropdown button:hover {
+  background-color: #66aaff;
+  color: white;
 }
+
 .hero {
   height: 100vh;
-  /* 로컬 이미지 사용 시: background: url('../../images/hero-bg.jpg') center/cover no-repeat; */
   background: url("https://d101vc9winf8ln.cloudfront.net/article_images/14853/original/_%EC%82%AC%EC%A7%84%EC%A7%80%EB%A3%8C__%ED%95%9C%EA%B5%AD%EC%A1%B0%EC%A7%80%EB%A9%94%EC%9D%B4%EC%8A%A8%EB%8C%80%ED%95%99%EA%B5%90_%EC%A0%84%EA%B2%BD.jpg?1598515855")
     center/cover no-repeat;
   display: flex;
@@ -75,26 +138,31 @@ nav ul li a {
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
   padding-top: 80px;
+  padding-bottom: 60px;
   position: relative;
   z-index: 1;
 }
+
 .hero h1 {
-  font-size: 64px;
+  font-size: 48px;
   margin: 0;
-  min-height: 80px;
+  min-height: 60px;
   color: white;
   opacity: 1;
   z-index: 10;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 .hero h1.typing::after {
   content: "|";
   animation: blink 0.7s infinite;
   margin-left: 5px;
 }
+
 .hero h1:not(.typing)::after {
   content: "";
 }
+
 @keyframes blink {
   0%,
   100% {
@@ -104,11 +172,14 @@ nav ul li a {
     opacity: 0;
   }
 }
+
 .hero p {
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 16px;
+  margin-top: 15px;
   z-index: 10;
+  line-height: 1.5;
 }
+
 .section {
   max-width: 1200px;
   margin: 0 auto;
@@ -116,32 +187,32 @@ nav ul li a {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.5s ease, transform 0.5s ease;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .section.visible {
   opacity: 1;
   transform: translateY(0);
   animation: fadeSlideUp 0.5s ease-out;
 }
-.section.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
+
 .section h2 {
-  font-size: 32px;
+  font-size: 28px;
   color: #66aaff;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  gap: 20px;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 30px;
 }
+
 .card {
   background-color: #1a1a1a;
   border-radius: 15px;
@@ -152,46 +223,57 @@ nav ul li a {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
+
 .card:hover {
   transform: translateY(-5px);
 }
+
 .card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
+
 .card-content {
-  padding: 20px;
+  padding: 15px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .card-content h3 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: #fff;
+  font-size: 18px;
 }
+
 .card-content p {
   color: #ccc;
-  font-size: 14px;
+  font-size: 13px;
   flex-grow: 1;
 }
+
 .cta-button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 15px;
   background-color: #66aaff;
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 15px;
   font-weight: bold;
   transition: background-color 0.3s ease;
   text-align: center;
+  -webkit-tap-highlight-color: transparent;
 }
+
 .cta-button:hover {
   background-color: #5588cc;
 }
+
 .modal {
   display: none;
   position: fixed;
@@ -204,34 +286,41 @@ nav ul li a {
   justify-content: center;
   align-items: center;
 }
+
 .modal-content {
   background-color: #1a1a1a;
-  padding: 30px;
+  padding: 25px;
   border-radius: 10px;
-  max-width: 500px;
+  max-width: 90%;
   text-align: center;
   color: #eee;
 }
+
 .modal-content h3 {
   color: #66aaff;
+  font-size: 20px;
 }
+
 .modal-content .close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
   cursor: pointer;
   color: #eee;
 }
+
 .timeline {
   position: relative;
-  padding: 20px 0;
+  padding: 15px 0;
 }
+
 .timeline-item {
-  margin: 20px 0;
-  padding-left: 40px;
+  margin: 15px 0;
+  padding-left: 35px;
   position: relative;
 }
+
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -241,6 +330,7 @@ nav ul li a {
   width: 4px;
   background: #66aaff;
 }
+
 .timeline-item::after {
   content: "";
   position: absolute;
@@ -251,58 +341,71 @@ nav ul li a {
   background: #66aaff;
   border-radius: 50%;
 }
+
 .timeline-item span {
-  font-size: 14px;
+  font-size: 13px;
   color: #ccc;
   display: block;
   margin-bottom: 5px;
 }
+
 .timeline-item h3 {
   color: #fff;
   margin: 5px 0;
+  font-size: 16px;
 }
+
 .timeline-item p {
   color: #ccc;
-  font-size: 14px;
+  font-size: 13px;
 }
+
 footer {
   background-color: #21513b;
   color: white;
-  padding: 40px 5vw;
+  padding: 30px 5vw;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 13px;
   width: 100%;
   box-sizing: border-box;
 }
+
 footer .container {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 footer .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 footer hr {
   border: 0;
   height: 1px;
   background: white;
-  margin: 30px 0;
+  margin: 20px 0;
 }
+
 footer .bottom {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
 }
+
 footer .bottom div {
   flex: 1;
-  min-width: 300px;
+  min-width: 100%;
+  text-align: center;
 }
+
 footer .bottom .right {
-  text-align: right;
+  text-align: center;
 }
+
 @keyframes fadeSlideUp {
   0% {
     opacity: 0;
@@ -313,35 +416,290 @@ footer .bottom .right {
     transform: translateY(0);
   }
 }
-@media (max-width: 768px) {
-  nav ul {
-    gap: 8px;
+
+/* iPhone (430px 이하) */
+@media (max-width: 430px) {
+  nav {
+    padding: 10px 3vw;
+    padding-top: 20px;
+    justify-content: center; /* 로고를 가운데로 */
+    position: relative;
   }
-  nav ul li a {
+
+  nav .logo {
+    font-size: 20px;
+    order: 2;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  /* 언어 아이콘을 맨 왼쪽, 햄버거 메뉴를 맨 오른쪽으로 */
+  nav .language-switcher {
+    order: 1;
+    position: absolute;
+    left: 20px;
+  }
+
+  nav .hamburger {
+    display: block;
+    order: 3;
+    position: absolute;
+    right: 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li a {
     font-size: 14px;
+    padding: 10px 0;
   }
+
+  .language-icon {
+    font-size: 18px;
+  }
+
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
   .hero h1 {
-    font-size: 36px;
+    font-size: 32px;
+    min-height: 40px;
   }
+
   .hero p {
-    font-size: 16px;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 0 20px;
   }
-  .cards {
-    grid-template-columns: 1fr;
+
+  .section {
+    padding: 40px 15px;
+    min-height: 60vh;
   }
+
   .section h2 {
     font-size: 24px;
   }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
   .card img {
     height: 150px;
   }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-content h3 {
+    font-size: 16px;
+  }
+
+  .card-content p {
+    font-size: 12px;
+  }
+
+  .cta-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
   .timeline-item {
     padding-left: 30px;
   }
+
   .timeline-item::before {
     left: 10px;
   }
+
   .timeline-item::after {
     left: 6px;
+  }
+}
+
+/* iPad (768px~1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    justify-content: space-between;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .section h2 {
+    font-size: 26px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .bottom div {
+    min-width: 45%;
+    text-align: left;
+  }
+
+  footer .bottom .right {
+    text-align: right;
+  }
+}
+
+/* 데스크톱 (1024px 이상) */
+@media (min-width: 1025px) {
+  nav {
+    padding: 20px 5vw;
+    justify-content: space-between;
+  }
+
+  nav .logo {
+    font-size: 28px;
+    order: 1;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+    order: 2;
+    transform: none;
+    opacity: 1;
+  }
+
+  .nav-links li a {
+    font-size: 18px;
+  }
+
+  nav .language-switcher {
+    order: 3;
+  }
+
+  .language-icon {
+    font-size: 24px;
+  }
+
+  .language-dropdown button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .hero h1 {
+    font-size: 64px;
+    min-height: 80px;
+  }
+
+  .hero p {
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 0 10%;
+  }
+
+  .section {
+    padding: 80px 30px;
+    min-height: 70vh;
+  }
+
+  .section h2 {
+    font-size: 36px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .card-content h3 {
+    font-size: 20px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .timeline-item {
+    padding-left: 40px;
+  }
+
+  .timeline-item::before {
+    left: 15px;
+  }
+
+  .timeline-item::after {
+    left: 11px;
+  }
+
+  .timeline-item span {
+    font-size: 14px;
+  }
+
+  .timeline-item h3 {
+    font-size: 18px;
+  }
+
+  .timeline-item p {
+    font-size: 14px;
+  }
+
+  footer {
+    padding: 40px 5vw;
+  }
+
+  footer .top {
+    font-size: 16px;
+  }
+
+  footer .bottom div {
+    min-width: 45%;
+    text-align: left;
+  }
+
+  footer .bottom .right {
+    text-align: right;
   }
 }
