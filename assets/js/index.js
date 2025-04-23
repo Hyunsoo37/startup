@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
       about_title: "소개",
       about_content:
         "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
-      events_title: "해커톤 정보",
-      events_content: "SAMK가 소개하는 외부 해커톤과 대회 정보입니다。",
-      events_hackathon1_title: "🎯 이미지 분류 해커톤",
+      events_title: " 공모전 ",
+      events_content: "SAMK가 추천하는 외부 해커톤과 공모전 대회 정보입니다。",
+      events_hackathon1_title: " 이미지 분류 해커톤",
       events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
-      events_hackathon2_title: "🧠 기업 성공 확률 예측 해커톤",
+      events_hackathon2_title: " 기업 성공 확률 예측 해커톤",
       events_hackathon2_content: "미래의 성공기업을 발굴하라!",
       events_hackathon3_title: "Snowflake & Streamlit 해커톤",
       events_hackathon3_content: "데이터로 아이디어를 현실로 만들고 싶다면?",
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       timeline_event3_content: "AI 기술로 미래를 설계하는 실습 워크숍",
       recruit_title: "모집 안내",
       recruit_content:
-        "연 2회 신입 모집 (봄/가을 학기). 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요。",
+        "가을 학기 모집 예정 자세한 일정은 Instagram 및 공지항을 통해 확인해주세요",
       check_instagram: "Instagram에서 확인하기",
       apply_now: "지금 지원하기",
     },
@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
       about_title: "About",
       about_content:
         "SAMK is a club based at George Mason University Korea, where students passionate about entrepreneurship and development come together to bring ideas to life and grow together.",
-      events_title: "Hackathon Information",
+      events_title: " Contest ",
       events_content:
-        "External hackathons and competitions introduced by SAMK.",
-      events_hackathon1_title: "🎯 Image Classification Hackathon",
+        "Here is information on external hackathons and competitions recommended by SAMK.",
+      events_hackathon1_title: " Image Classification Hackathon",
       events_hackathon1_content: "Identify the types of icons in the data!",
-      events_hackathon2_title: "🧠 Business Success Prediction Hackathon",
+      events_hackathon2_title: " Business Success Prediction Hackathon",
       events_hackathon2_content: "Discover the future successful businesses!",
       events_hackathon3_title: "Snowflake & Streamlit Hackathon",
       events_hackathon3_content:
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "A hands-on workshop designing the future with AI technology",
       recruit_title: "Recruitment",
       recruit_content:
-        "Recruitment twice a year (Spring/Fall semester). Check detailed schedules on Instagram and announcements.",
+        "Please check our Instagram and official announcements for detailed information about the upcoming Fall semester recruitment schedule.",
       check_instagram: "Check on Instagram",
       apply_now: "Apply Now",
     },
