@@ -194,14 +194,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (team === "dif") {
       modalTitle.textContent = currentLang === "en" ? "DIF Team" : "DIF 팀";
-      modalMembers.textContent = "Members: Alice, Bob, Charlie";
+      modalMembers.textContent =
+        "Members: 박새봄(팀장), 하태준, 오태준, 이현수";
     } else if (team === "jun") {
       modalTitle.textContent = currentLang === "en" ? "Jun Team" : "Jun 팀";
       modalMembers.textContent = "Members: David, Emma, Frank";
     } else if (team === "sydney") {
       modalTitle.textContent =
         currentLang === "en" ? "Sydney Team" : "Sydney 팀";
-      modalMembers.textContent = "Members: Grace, Henry, Isabel";
+      modalMembers.textContent = "Members: Sydney(팈장), Henry, Isabel";
     }
 
     modal.style.display = "flex";
