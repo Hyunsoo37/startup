@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       hero_subtitle: "조지메이슨 글로벌캠퍼스에서 시작하세요",
       about_title: "소개",
       about_content:
-        "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
+        "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 공모전을 나가고 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
       events_title: " 공모전 ",
       events_content: "SAMK가 추천하는 외부 해커톤과 공모전 대회 정보입니다。",
       events_hackathon1_title: " 이미지 분류 해커톤",
