@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 공모전을 나가고 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
       events_title: " 공모전 ",
       events_content: "SAMK가 추천하는 외부 해커톤과 공모전 대회 정보입니다。",
-      events_hackathon1_title: " 이미지 분류 해커톤",
-      events_hackathon1_content: "데이터 속 아이콘의 종류를 맞혀라!",
+      events_hackathon1_title: "블록체인&AI 해커톤",
+      events_hackathon1_content: "아이디어를 넘어 창업을 꿈꾸다!",
       events_hackathon2_title: " 기업 성공 확률 예측 해커톤",
       events_hackathon2_content: "미래의 성공기업을 발굴하라!",
       events_hackathon3_title: "보험연구원 온라인 서포터즈 모집",
@@ -56,8 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
       events_title: " Contest ",
       events_content:
         "Here is information on external hackathons and competitions recommended by SAMK.",
-      events_hackathon1_title: " Image Classification Hackathon",
-      events_hackathon1_content: "Identify the types of icons in the data!",
+      events_hackathon1_title: " Blockchain & AI Hackathon",
+      events_hackathon1_content:
+        "Dreaming of starting a business beyond ideas!",
       events_hackathon2_title: " Business Success Prediction Hackathon",
       events_hackathon2_content: "Discover the future successful businesses!",
       events_hackathon3_title:
