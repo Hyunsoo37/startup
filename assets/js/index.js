@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       events_hackathon1_content: "아이디어를 넘어 창업을 꿈꾸다!",
       events_hackathon2_title: " 기업 성공 확률 예측 해커톤",
       events_hackathon2_content: "미래의 성공기업을 발굴하라!",
-      events_hackathon3_title: "보험연구원 온라인 서포터즈 모집",
-      events_hackathon3_content: "보험에 관심이 있다면?",
+      events_hackathon3_title: "AI SW 융합 해커톤",
+      events_hackathon3_content: "AI와 SW의 융합으로 새로운 가치를 창출하다!",
       learn_more: "더 알아보기 →",
       team_title: "팀",
       team_content:
@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "Dreaming of starting a business beyond ideas!",
       events_hackathon2_title: " Business Success Prediction Hackathon",
       events_hackathon2_content: "Discover the future successful businesses!",
-      events_hackathon3_title:
-        "Recruitment for Online Supporters of the Korea Insurance Research Institute",
-      events_hackathon3_content: "If you're interested in insurance",
+      events_hackathon3_title: "AI SW Convergence Hackathon",
+      events_hackathon3_content:
+        "Creating new value through the convergence of AI and SW!",
       learn_more: "Learn More →",
       team_title: "Teams",
       team_content:
