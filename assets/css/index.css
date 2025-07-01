@@ -51,6 +51,7 @@ nav .logo a {
   display: none; /* 기본적으로 숨김 */
   font-size: 24px; /* 아이콘 크기 */
   cursor: pointer; /* 클릭 가능 커서 */
+  padding: 5px; /* 터치 영역 확보 */
 }
 
 /* 내비게이션 링크 스타일 */
@@ -289,6 +290,7 @@ nav .logo a {
   transition: background-color 0.3s ease; /* 배경색 전환 효과 */
   text-align: center; /* 가운데 정렬 */
   -webkit-tap-highlight-color: transparent; /* 모바일 탭 하이라이트 제거 */
+  min-width: 100px; /* 최소 너비 */
 }
 
 .cta-button:hover {
@@ -469,6 +471,8 @@ footer .bottom .right {
     order: 3; /* 오른쪽 배치 */
     position: absolute; /* 절대 위치 */
     right: 20px; /* 오른쪽 간격 */
+    font-size: 24px; /* 아이콘 크기 */
+    padding: 8px; /* 터치 영역 확보 */
   }
 
   .nav-links {
@@ -477,31 +481,57 @@ footer .bottom .right {
 
   .nav-links.active {
     display: flex; /* 활성화 시 표시 */
+    flex-direction: column; /* 세로 배치 */
+    position: absolute; /* 절대 위치 */
+    top: 60px; /* 내비게이션 바 아래 표시 */
+    left: 0;
+    width: 100%; /* 전체 너비 */
+    background-color: #000; /* 배경색 */
+    padding: 20px; /* 내부 패딩 */
+    box-sizing: border-box;
+    gap: 15px; /* 링크 간 간격 */
   }
 
   .nav-links li a {
-    font-size: 14px; /* 폰트 크기 */
-    padding: 10px 0; /* 패딩 */
+    font-size: 16px; /* 폰트 크기 */
+    padding: 12px 0; /* 패딩 */
+    text-align: center; /* 가운데 정렬 */
+    display: block; /* 블록 요소로 */
   }
 
   .language-icon {
     font-size: 18px; /* 아이콘 크기 */
   }
 
+  .language-dropdown {
+    top: 25px; /* 아이콘 아래 표시 */
+    min-width: 100px; /* 최소 너비 */
+  }
+
+  .language-dropdown button {
+    font-size: 14px; /* 폰트 크기 */
+    padding: 10px; /* 패딩 */
+  }
+
   .hero {
     padding-top: 100px; /* 상단 패딩 */
     padding-bottom: 80px; /* 하단 패딩 */
+    height: auto; /* 높이 자동 조정 */
+    min-height: 60vh; /* 최소 높이 */
   }
 
   .hero h1 {
-    font-size: 32px; /* 제목 폰트 크기 */
+    font-size: 28px; /* 제목 폰트 크기 */
     min-height: 40px; /* 최소 높이 */
+    padding: 0 10px; /* 좌우 패딩 */
+    line-height: 1.2; /* 줄 간격 조정 */
   }
 
   .hero p {
     font-size: 14px; /* 본문 폰트 크기 */
     margin-top: 10px; /* 상단 마진 */
-    padding: 0 20px; /* 좌우 패딩 */
+    padding: 0 15px; /* 좌우 패딩 */
+    word-break: break-word; /* 단어 단위 줄바꿈 */
   }
 
   .section {
@@ -519,29 +549,38 @@ footer .bottom .right {
     margin-top: 20px; /* 상단 마진 */
   }
 
+  .card {
+    min-height: 300px; /* 최소 높이 */
+  }
+
   .card img {
     height: 150px; /* 이미지 높이 */
   }
 
   .card-content {
-    padding: 10px; /* 패딩 */
+    padding: 12px; /* 패딩 */
   }
 
   .card-content h3 {
     font-size: 16px; /* 폰트 크기 */
+    margin-bottom: 8px; /* 하단 마진 */
   }
 
   .card-content p {
     font-size: 12px; /* 폰트 크기 */
+    line-height: 1.4; /* 가독성 향상 */
   }
 
   .cta-button {
-    padding: 6px 12px; /* 패딩 */
-    font-size: 13px; /* 폰트 크기 */
+    padding: 8px 15px; /* 패딩 */
+    font-size: 14px; /* 폰트 크기 */
+    min-width: 120px; /* 최소 너비 */
+    text-align: center; /* 가운데 정렬 */
   }
 
   .timeline-item {
-    padding-left: 30px; /* 왼쪽 패딩 */
+    padding-left: 25px; /* 왼쪽 패딩 */
+    margin: 20px 0; /* 상하 마진 */
   }
 
   .timeline-item::before {
@@ -550,6 +589,46 @@ footer .bottom .right {
 
   .timeline-item::after {
     left: 6px; /* 타임라인 점 위치 */
+  }
+
+  .timeline-item span {
+    font-size: 12px; /* 폰트 크기 */
+  }
+
+  .timeline-item h3 {
+    font-size: 14px; /* 폰트 크기 */
+  }
+
+  .timeline-item p {
+    font-size: 12px; /* 폰트 크기 */
+  }
+
+  footer {
+    padding: 20px 3vw; /* 패딩 */
+  }
+
+  footer .top {
+    flex-direction: column; /* 수직 배치 */
+    align-items: center; /* 가운데 정렬 */
+    text-align: center; /* 텍스트 가운데 */
+  }
+
+  footer .top div {
+    margin-top: 10px; /* 상단 마진 */
+  }
+
+  footer .bottom {
+    flex-direction: column; /* 수직 배치 */
+    align-items: center; /* 가운데 정렬 */
+  }
+
+  footer .bottom div {
+    text-align: center; /* 텍스트 가운데 */
+    margin: 10px 0; /* 상하 마진 */
+  }
+
+  footer p {
+    font-size: 12px; /* 폰트 크기 */
   }
 }
 
