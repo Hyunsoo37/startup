@@ -11,12 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 공모전을 나가고 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
       events_title: " 공모전 ",
       events_content: "SAMK가 추천하는 외부 해커톤과 공모전 대회 정보입니다。",
-      events_hackathon1_title: "블록체인&AI 해커톤",
-      events_hackathon1_content: "아이디어를 넘어 창업을 꿈꾸다!",
-      events_hackathon2_title: " 기업 성공 확률 예측 해커톤",
-      events_hackathon2_content: "미래의 성공기업을 발굴하라!",
-      events_hackathon3_title: "AI SW 융합 해커톤",
-      events_hackathon3_content: "AI와 SW의 융합으로 새로운 가치를 창출하다!",
+      events_hackathon1_title: "서울청년기획봉사단",
+      events_hackathon1_content: "함께 성장하는 대학생 봉사 기획",
+      events_hackathon2_title: "인천 대학연합 창업아카데미",
+      events_hackathon2_content: "창업 아이디어 발굴 및 지원",
+      events_hackathon3_title: "하나 소셜벤처 유니버시티",
+      events_hackathon3_content:
+        "창업 인재를 발굴/육성하는 국내 최초의 거점대학 연계형 청년 창업 육성 프로그램",
       learn_more: "더 알아보기 →",
       team_title: "팀",
       team_content:
@@ -57,14 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
       events_title: " Contest ",
       events_content:
         "Here is information on external hackathons and competitions recommended by SAMK.",
-      events_hackathon1_title: " Blockchain & AI Hackathon",
+      events_hackathon1_title: "Seoul Youth Planning Volunteer Group",
       events_hackathon1_content:
-        "Dreaming of starting a business beyond ideas!",
-      events_hackathon2_title: " Business Success Prediction Hackathon",
-      events_hackathon2_content: "Discover the future successful businesses!",
-      events_hackathon3_title: "AI SW Convergence Hackathon",
+        "Planning university student volunteer activities for mutual growth",
+      events_hackathon2_title: "Incheon University Union Startup Academy",
+      events_hackathon2_content: "Discover and support startup ideas",
+      events_hackathon3_title: "Hana Social Venture University",
       events_hackathon3_content:
-        "Creating new value through the convergence of AI and SW!",
+        "The first university-linked youth startup program in Korea to discover and nurture startup talents",
       learn_more: "Learn More →",
       team_title: "Teams",
       team_content:
