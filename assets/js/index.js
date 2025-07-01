@@ -1,7 +1,8 @@
+/* DOM이 완전히 로드되었을 때 실행 */
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded");
+  console.log("DOM 완전히 로드됨");
 
-  // 언어 데이터 (확장 가능)
+  /* 언어 데이터 객체 (한국어와 영어 지원) */
   const languages = {
     ko: {
       hero_title: "SAMK에 오신 것을 환영합니다",
@@ -9,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       about_title: "소개",
       about_content:
         "SAMK는 창업과 개발을 사랑하는 학생들이 모여 아이디어를 실현하고 함께 공모전을 나가고 성장하는 조지메이슨 글로벌캠퍼스 기반의 동아리입니다。",
-      events_title: " 공모전 ",
+      events_title: "공모전",
       events_content: "SAMK가 추천하는 외부 해커톤과 공모전 대회 정보입니다。",
       events_hackathon1_title: "서울청년기획봉사단",
       events_hackathon1_content: "함께 성장하는 대학생 봉사 기획",
@@ -37,17 +38,28 @@ document.addEventListener("DOMContentLoaded", () => {
       timeline_event1_title: "서울동행 프로젝트 실시",
       timeline_event1_content:
         "서울시에서 주최하는 프로젝트를 LG헬로비전과 함께 진행합니다",
-      timeline_date2: "2025.09",
-      timeline_event2_title: "창업 아카데미(예정)",
-      timeline_event2_content: "스타트업 전문가와 함께한 아이디어 워크숍",
+      timeline_date2: "2025.07",
+      timeline_event2_title: "인천 대학연합 창업아카데미",
+      timeline_event2_content:
+        "인천시에서 청년 창업 아이디어를 발전 & 지원 합니다。",
       timeline_date3: "2025.11",
       timeline_event3_title: "AI 워크숍 (예정)",
       timeline_event3_content: "AI 기술로 미래를 설계하는 실습 워크숍",
       recruit_title: "모집 안내",
       recruit_content:
-        "가을 학기 모집 예정 자세한 일정은 Instagram 및 공지항을 통해 확인해주세요",
+        "가을 학기 모집 예정 자세한 일정은 Instagram 및 공지사항을 통해 확인해주세요",
       check_instagram: "Instagram에서 확인하기",
       apply_now: "지금 지원하기",
+      footer_copyright: "Copyright © SAMK All Rights Reserved.",
+      footer_made_by: "Made with by SAMK",
+      footer_version: "2025 Ver. Created by <strong>SAMK</strong>",
+      footer_address:
+        "경기도 인천시 연수구 송도문화로 119, 조지메이슨대학교 글로벌캠퍼스",
+      footer_email: "spark279@gmu.edu",
+      footer_president_label: "회장",
+      footer_president: "박새봄 010-9454-0836",
+      footer_vice_president_label: "부회장",
+      footer_vice_president: "하태준 010-4775-7419",
     },
     en: {
       hero_title: "Welcome to SAMK",
@@ -55,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       about_title: "About",
       about_content:
         "SAMK is a club based at George Mason University Korea, where students passionate about entrepreneurship and development come together to bring ideas to life and grow together.",
-      events_title: " Contest ",
+      events_title: "Contest",
       events_content:
         "Here is information on external hackathons and competitions recommended by SAMK.",
       events_hackathon1_title: "Seoul Youth Planning Volunteer Group",
@@ -85,9 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
       timeline_event1_title: "Seoul Project",
       timeline_event1_content:
         "A project hosted by the Seoul Metropolitan Government in collaboration with LG HelloVision.",
-      timeline_date2: "2025.09",
-      timeline_event2_title: "Startup Academy (Planned)",
-      timeline_event2_content: "An idea workshop with startup experts",
+      timeline_date2: "2025.07",
+      timeline_event2_title: "Incheon University Union Startup Academy",
+      timeline_event2_content:
+        "Supporting the development of youth startup ideas in Incheon.",
       timeline_date3: "2025.11",
       timeline_event3_title: "AI Workshop (Planned)",
       timeline_event3_content:
@@ -97,36 +110,49 @@ document.addEventListener("DOMContentLoaded", () => {
         "Please check our Instagram and official announcements for detailed information about the upcoming Fall semester recruitment schedule.",
       check_instagram: "Check on Instagram",
       apply_now: "Apply Now",
+      footer_copyright: "Copyright © SAMK All Rights Reserved.",
+      footer_made_by: "Made with by SAMK",
+      footer_version: "2025 Ver. Created by <strong>SAMK</strong>",
+      footer_address:
+        "119 Songdo Munhwa-ro, Yeonsu-gu, Incheon, South Korea, George Mason University Korea",
+      footer_email: "spark279@gmu.edu",
+      footer_president_label: "President",
+      footer_president: "Saebom Park 010-9454-0836",
+      footer_vice_president_label: "Vice President",
+      footer_vice_president: "Taejun Ha 010-4775-7419",
     },
   };
 
-  // 현재 언어 상태 (기본값: 한국어)
+  /* 현재 언어 상태 (기본값: 한국어) */
   let currentLang = "ko";
 
-  // 언어 변경 함수
+  /* 언어 변경 함수 */
   function updateLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll("[data-lang-key]").forEach((element) => {
       const key = element.getAttribute("data-lang-key");
       if (languages[lang][key]) {
-        element.textContent = languages[lang][key];
+        // HTML 태그가 포함된 경우 innerHTML 사용
+        if (key === "footer_version") {
+          element.innerHTML = languages[lang][key];
+        } else {
+          element.textContent = languages[lang][key];
+        }
       }
     });
-    // HTML lang 속성 업데이트
-    document.documentElement.lang = lang;
-    // 타이핑 애니메이션 재실행
+    document.documentElement.lang = lang; /* HTML lang 속성 업데이트 */
+    /* 타이핑 애니메이션 초기화 */
     index = 0;
     typingText.classList.add("typing");
     type();
   }
 
-  // 타이핑 애니메이션
+  /* 타이핑 애니메이션 설정 */
   const typingText = document.getElementById("typing-text");
-  let textToType = languages[currentLang].hero_title;
   let index = 0;
 
   function type() {
-    textToType = languages[currentLang].hero_title;
+    const textToType = languages[currentLang].hero_title;
     if (index < textToType.length) {
       typingText.textContent = textToType.substring(0, index + 1);
       index++;
@@ -136,11 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 초기 타이핑 애니메이션 실행
+  /* 초기 타이핑 애니메이션 실행 */
   typingText.classList.add("typing");
   type();
 
-  // 언어 드롭다운 토글
+  /* 언어 드롭다운 토글 */
   const languageIcon = document.querySelector(".language-icon");
   const languageDropdown = document.querySelector(".language-dropdown");
 
@@ -148,19 +174,17 @@ document.addEventListener("DOMContentLoaded", () => {
     languageDropdown.classList.toggle("active");
   });
 
-  // 언어 버튼 클릭 이벤트
-  const langButtons = document.querySelectorAll(".lang-btn");
-  langButtons.forEach((button) => {
+  /* 언어 버튼 클릭 이벤트 */
+  document.querySelectorAll(".lang-btn").forEach((button) => {
     button.addEventListener("click", () => {
-      const lang = button.getAttribute("data-lang");
-      updateLanguage(lang);
+      updateLanguage(button.getAttribute("data-lang"));
       languageDropdown.classList.remove("active");
     });
   });
 
-  // 섹션 스크롤 애니메이션
+  /* 섹션 스크롤 애니메이션 */
   const sections = document.querySelectorAll(".section");
-  const options = {
+  const observerOptions = {
     threshold: 0.1,
   };
 
@@ -168,16 +192,15 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target); // 한 번 보이면 관찰 중지
+        observer.unobserve(entry.target); /* 한 번 보이면 관찰 중지 */
       }
     });
-  }, options);
+  }, observerOptions);
 
   sections.forEach((section) => observer.observe(section));
 
-  // 네비게이션 링크 스크롤
-  const navLinks = document.querySelectorAll("nav ul li a");
-  navLinks.forEach((link) => {
+  /* 내비게이션 링크 스크롤 */
+  document.querySelectorAll("nav ul li a").forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = link.getAttribute("href").substring(1);
@@ -186,38 +209,45 @@ document.addEventListener("DOMContentLoaded", () => {
         top: targetSection.offsetTop - 60,
         behavior: "smooth",
       });
+      /* 모바일에서 메뉴 닫기 */
+      document.querySelector(".nav-links").classList.remove("active");
     });
   });
 
-  // 모달 표시
+  /* 모달 표시 함수 */
   window.showModal = function (team) {
     const modal = document.getElementById("team-modal");
     const modalTitle = document.getElementById("modal-title");
     const modalMembers = document.getElementById("modal-members");
 
-    if (team === "dif") {
-      modalTitle.textContent = currentLang === "en" ? "DIF Team" : "DIF 팀";
-      modalMembers.textContent =
-        "Members: 박새봄(팀장), 하태준, 오태준, 이현수";
-    } else if (team === "jun") {
-      modalTitle.textContent = currentLang === "en" ? "Jun Team" : "Jun 팀";
-      modalMembers.textContent = "Members: David, Emma, Frank";
-    } else if (team === "sydney") {
-      modalTitle.textContent =
-        currentLang === "en" ? "Sydney Team" : "Sydney 팀";
-      modalMembers.textContent = "Members: Sydney(팈장), Henry, Isabel";
+    const teamData = {
+      dif: {
+        title: currentLang === "en" ? "DIF Team" : "DIF 팀",
+        members: "Members: 박새봄(팀장), 하태준, 오태준, 이현수",
+      },
+      jun: {
+        title: currentLang === "en" ? "Jun Team" : "Jun 팀",
+        members: "Members: David, Emma, Frank",
+      },
+      sydney: {
+        title: currentLang === "en" ? "Sydney Team" : "Sydney 팀",
+        members: "Members: Sydney(팀장), Henry, Isabel",
+      },
+    };
+
+    if (teamData[team]) {
+      modalTitle.textContent = teamData[team].title;
+      modalMembers.textContent = teamData[team].members;
+      modal.style.display = "flex";
     }
-
-    modal.style.display = "flex";
   };
 
-  // 모달 닫기
+  /* 모달 닫기 함수 */
   window.closeModal = function () {
-    const modal = document.getElementById("team-modal");
-    modal.style.display = "none";
+    document.getElementById("team-modal").style.display = "none";
   };
 
-  // 햄버거 메뉴 토글
+  /* 햄버거 메뉴 토글 */
   const hamburger = document.querySelector(".hamburger");
   const navLinksContainer = document.querySelector(".nav-links");
 
@@ -225,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinksContainer.classList.toggle("active");
   });
 
-  // 드롭다운 외부 클릭 시 닫기
+  /* 드롭다운 및 메뉴 외부 클릭 시 닫기 */
   document.addEventListener("click", (e) => {
     if (
       !languageIcon.contains(e.target) &&
